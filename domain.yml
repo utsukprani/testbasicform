@@ -1,0 +1,67 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - check_component
+
+entities:
+  - component
+
+slots:
+  component:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: component
+
+  hostname:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+forms:
+  check_component_form:
+    required_slots:
+      - component
+      - hostname
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_ask_component:
+  - text: "Please provide the component name"
+
+  utter_ask_hostname:
+  - text: "Please provide the host name"
+
+  utter_component_status:
+  - text: Checking status of {component} on {hostname}.
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
